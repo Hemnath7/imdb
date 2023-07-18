@@ -1,0 +1,6 @@
+- diff b/w search and delete
+    - search temperorarily hides the element in the UI
+    - delete permanently removes the element in the UI
+    steps
+    * search something
+    * map a searched movies --> searched
