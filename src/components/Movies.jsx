@@ -111,8 +111,8 @@ function Movies() {
                     {favorites.includes(movie.id) == false ? (
                       <div
                         onClick={() => {
-                          // addEmoji(movie.id);
-                          dispatch(addFavorites(movie.id));
+                          addEmoji(movie.id);
+                          dispatch(addFavorites(movie));
                         }}
                       >
                         ❤️

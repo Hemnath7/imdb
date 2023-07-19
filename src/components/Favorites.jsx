@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "./Pagination";
 import { addFavorites, favMovies } from "../redux/favoritesReducer";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 let genreIds = {
@@ -101,9 +101,10 @@ let sampleMovies = [
 ];
 
 function Favorites() {
+  const favMoviesClicked = useSelector(favMovies);
   let [genres, setGenres] = useState([]);
-  let [movies, setMovies] = useState(sampleMovies);
-
+  // let [movies, setMovies] = useState(sampleMovies);
+  let [movies, setMovies] = useState(favMoviesClicked);
   let [searchItem, setSearchItem] = useState("");
   let [currGenre, setCurrGenre] = useState("All Genres");
   let [curRatingOrder, setCurRatingOrder] = useState(0);
@@ -111,8 +112,26 @@ function Favorites() {
   let [noOfElements, setNoOfElements] = useState(2);
   let [curPage, setCurPage] = useState(1);
   //
-  // API Call
 
+  // New feature - filtering using movies ID
+  // const favMoviesId = useSelector(favMovies);
+  // let filteredFavMovies = movies.filter((movie)=>{
+  //   return movie.id == favMovies? console.log(filteredFavMovies): console.log('saas')
+
+  // })
+
+  // API Call
+  useEffect(() => {
+    axios
+      .get(
+        "https://api.themoviedb.org/3/trending/all/week?api_key=565dda78aae2b75fafddbc4320a33b38&page=1"
+      )
+      .then((res) => {
+        // console.log(res.data.results);
+        // setMovies(res.data.results);
+        // console.log(movies);
+      });
+  }, []);
 
   // Delete function
   const deleteMovie = (id) => {
